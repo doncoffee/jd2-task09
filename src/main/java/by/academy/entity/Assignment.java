@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.Set;
 
 @Setter
-@ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,8 +16,8 @@ import java.util.Set;
 @Table
 public class Assignment implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "assignment_id", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "assignment_id")
     private Integer id;
     @Column
     private Integer mark;

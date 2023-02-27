@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.Set;
 
 @Setter
-@ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,8 +16,8 @@ import java.util.Set;
 @Table
 public class Administrator implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "administrator_id", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "administrator_id")
     private Integer id;
     @OneToMany(mappedBy = "administrator")
     private Set<Course> courses = new HashSet<>();

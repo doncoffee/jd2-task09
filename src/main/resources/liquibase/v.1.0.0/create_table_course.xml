@@ -22,11 +22,8 @@
                 course_id        int auto_increment
                     primary key,
                 administrator_id int null,
-                teacher_id       int null,
                 constraint FK6vxifbax9ydyncxff8s1fbljc
-                    foreign key (administrator_id) references assignment09.administrator (administrator_id),
-                constraint FK90kt2haj2fb3guifaq4rgy8m4
-                    foreign key (teacher_id) references assignment09.teacher (teacher_id)
+                    foreign key (administrator_id) references assignment09.administrator (administrator_id)
             );
         </sql>
     </changeSet>

@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.Set;
 
 @Setter
-@ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,12 +16,9 @@ import java.util.Set;
 @Table
 public class Course implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "course_id", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "course_id")
     private Integer id;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teacher_id")
-    private Teacher teacher;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "administrator_id")
     private Administrator administrator;

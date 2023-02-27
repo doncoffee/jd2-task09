@@ -4,12 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @Setter
-@ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,14 +14,12 @@ import java.util.Set;
 @Table
 public class Teacher implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "teacher_id", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "teacher_id")
     private Integer id;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "administrator_id")
     private Administrator administrator;
-    @OneToMany(mappedBy = "teacher")
-    private Set<Course> courses = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

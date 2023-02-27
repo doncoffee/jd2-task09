@@ -20,6 +20,7 @@ public class App {
         DAO<Student> studentDAO = new StudentDAOImpl();
         DAO<Teacher> teacherDAO = new TeacherDAOImpl();
 
+        // create entities
         Administrator administrator = Administrator.builder()
                 .id(null)
                 .courses(null)
@@ -33,7 +34,6 @@ public class App {
         Teacher teacher = Teacher.builder()
                 .id(null)
                 .administrator(administrator)
-                .courses(null)
                 .build();
         Assignment assignment = Assignment.builder()
                 .id(null)
@@ -43,16 +43,16 @@ public class App {
                 .build();
         Course course = Course.builder()
                 .id(null)
-                .teacher(teacher)
                 .administrator(administrator)
                 .students(null)
                 .build();
         Administrator administrator1 = new Administrator(null, null, null);
         Student student1 = new Student(null, null, null);
-        Teacher teacher1 = new Teacher(null, administrator1, null);
+        Teacher teacher1 = new Teacher(null, administrator1);
         Assignment assignment1 = new Assignment(null, 8, "good", null);
-        Course course1 = new Course(null, teacher1, administrator1, null);
+        Course course1 = new Course(null, administrator1, null);
 
+        // fulfil collections
         Set<Course> courses = new HashSet<>();
         Set<Teacher> teachers = new HashSet<>();
         Set<Assignment> assignments = new HashSet<>();
@@ -63,8 +63,6 @@ public class App {
         administrator1.setCourses(courses);
         student.setCourses(courses);
         student1.setCourses(courses);
-        teacher.setCourses(courses);
-        teacher1.setCourses(courses);
 
         teachers.add(teacher);
         teachers.add(teacher1);
@@ -88,12 +86,13 @@ public class App {
 //        adminDAO.create(administrator1);
 //        assignmentDAO.create(assignment);
 //        assignmentDAO.create(assignment1);
-//        courseDAO.create(course);
-//        courseDAO.create(course1);
 //        studentDAO.create(student);
 //        studentDAO.create(student1);
 //        teacherDAO.create(teacher);
 //        teacherDAO.create(teacher1);
+//        courseDAO.create(course);
+//        courseDAO.create(course1);
+//
 //
 //        // read
 //        System.out.println(adminDAO.read());
@@ -101,13 +100,13 @@ public class App {
 //        System.out.println(courseDAO.read());
 //        System.out.println(studentDAO.read());
 //        System.out.println(teacherDAO.read());
+//        System.out.println(assignmentDAO.selectById(3));
 //
 //        // update
 //        assignmentDAO.update(new Assignment(2, 3, "bad", students));
 //
 //        // delete
-//        assignmentDAO.create(new Assignment(3, null, null, null));
-//        assignmentDAO.delete(3);
+//        assignmentDAO.delete(1);
 
         entityManager.getTransaction().begin();
         entityManager.persist(administrator);
