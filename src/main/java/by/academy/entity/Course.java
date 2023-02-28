@@ -16,10 +16,10 @@ import java.util.Set;
 @Table
 public class Course implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "course_id")
     private Integer id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "administrator_id")
     private Administrator administrator;
     @ManyToMany(mappedBy = "courses")

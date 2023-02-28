@@ -14,10 +14,10 @@ import java.util.Objects;
 @Table
 public class Teacher implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "teacher_id")
     private Integer id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "administrator_id")
     private Administrator administrator;
 

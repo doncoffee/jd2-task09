@@ -12,7 +12,7 @@ import java.util.Set;
 public class App {
 
     public static void main(String[] args) {
-        EntityManager entityManager = HibernateUtil.getEntityManager();
+//        EntityManager entityManager = HibernateUtil.getEntityManager();
 
         DAO<Administrator> adminDAO = new AdministratorDAOImpl();
         DAO<Assignment> assignmentDAO = new AssignmentDAOImpl();
@@ -22,35 +22,35 @@ public class App {
 
         // create entities
         Administrator administrator = Administrator.builder()
-                .id(null)
+                .id(1)
                 .courses(null)
                 .teachers(null)
                 .build();
         Student student = Student.builder()
-                .id(null)
+                .id(1)
                 .courses(null)
                 .assignments(null)
                 .build();
         Teacher teacher = Teacher.builder()
-                .id(null)
+                .id(1)
                 .administrator(administrator)
                 .build();
         Assignment assignment = Assignment.builder()
-                .id(null)
+                .id(1)
                 .mark(10)
                 .review("Excellent job")
                 .students(null)
                 .build();
         Course course = Course.builder()
-                .id(null)
+                .id(1)
                 .administrator(administrator)
                 .students(null)
                 .build();
-        Administrator administrator1 = new Administrator(null, null, null);
-        Student student1 = new Student(null, null, null);
-        Teacher teacher1 = new Teacher(null, administrator1);
-        Assignment assignment1 = new Assignment(null, 8, "good", null);
-        Course course1 = new Course(null, administrator1, null);
+        Administrator administrator1 = new Administrator(2, null, null);
+        Student student1 = new Student(2, null, null);
+        Teacher teacher1 = new Teacher(2, administrator1);
+        Assignment assignment1 = new Assignment(2, 8, "good", null);
+        Course course1 = new Course(2, administrator1, null);
 
         // fulfil collections
         Set<Course> courses = new HashSet<>();
@@ -81,46 +81,47 @@ public class App {
         course.setStudents(students);
         course1.setStudents(students);
 
-//        // create
-//        adminDAO.create(administrator);
-//        adminDAO.create(administrator1);
-//        assignmentDAO.create(assignment);
-//        assignmentDAO.create(assignment1);
-//        studentDAO.create(student);
-//        studentDAO.create(student1);
-//        teacherDAO.create(teacher);
-//        teacherDAO.create(teacher1);
-//        courseDAO.create(course);
-//        courseDAO.create(course1);
-//
-//
-//        // read
-//        System.out.println(adminDAO.read());
-//        System.out.println(assignmentDAO.read());
-//        System.out.println(courseDAO.read());
-//        System.out.println(studentDAO.read());
-//        System.out.println(teacherDAO.read());
-//        System.out.println(assignmentDAO.selectById(3));
-//
-//        // update
-//        assignmentDAO.update(new Assignment(2, 3, "bad", students));
-//
+        // create
+        adminDAO.create(administrator);
+        adminDAO.create(administrator1);
+        assignmentDAO.create(assignment);
+        assignmentDAO.create(assignment1);
+        courseDAO.create(course);
+        courseDAO.create(course1);
+        studentDAO.create(student);
+        studentDAO.create(student1);
+        teacherDAO.create(teacher);
+        teacherDAO.create(teacher1);
+
+        // read
+        System.out.println(adminDAO.read());
+        System.out.println(assignmentDAO.read());
+        System.out.println(courseDAO.read());
+        System.out.println(studentDAO.read());
+        System.out.println(teacherDAO.read());
+        System.out.println(assignmentDAO.selectById(3));
+
+        // update
+        assignmentDAO.update(new Assignment(2, 3, "bad", students));
+
 //        // delete
+//        studentDAO.delete(1);
+//        studentDAO.delete(2);
 //        assignmentDAO.delete(1);
 
-        entityManager.getTransaction().begin();
-        entityManager.persist(administrator);
-        entityManager.persist(administrator1);
-        entityManager.persist(assignment);
-        entityManager.persist(assignment1);
-        entityManager.persist(course);
-        entityManager.persist(course1);
-        entityManager.persist(student);
-        entityManager.persist(student1);
-        entityManager.persist(teacher);
-        entityManager.persist(teacher1);
-        entityManager.getTransaction().commit();
-
-        HibernateUtil.close();
+//        entityManager.getTransaction().begin();
+//        entityManager.persist(administrator);
+//        entityManager.persist(administrator1);
+//        entityManager.persist(assignment);
+//        entityManager.persist(assignment1);
+//        entityManager.persist(course);
+//        entityManager.persist(course1);
+//        entityManager.persist(student);
+//        entityManager.persist(student1);
+//        entityManager.persist(teacher);
+//        entityManager.persist(teacher1);
+//        entityManager.getTransaction().commit();
+//
+//        HibernateUtil.close();
     }
 }

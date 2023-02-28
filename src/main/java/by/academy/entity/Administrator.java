@@ -16,7 +16,7 @@ import java.util.Set;
 @Table
 public class Administrator implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "administrator_id")
     private Integer id;
     @OneToMany(mappedBy = "administrator")

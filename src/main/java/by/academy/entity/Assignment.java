@@ -16,14 +16,14 @@ import java.util.Set;
 @Table
 public class Assignment implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "assignment_id")
     private Integer id;
     @Column
     private Integer mark;
     @Column
     private String review;
-    @ManyToMany(mappedBy = "assignments")
+    @ManyToMany(mappedBy = "assignments", cascade = CascadeType.REMOVE)
     private Set<Student> students = new HashSet<>();
 
     @Override
