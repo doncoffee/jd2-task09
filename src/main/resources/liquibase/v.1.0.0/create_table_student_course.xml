@@ -5,14 +5,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
 
     <changeSet id="create-student_course-table-liquibase" author="doncoffee">
-<!--        <createTable tableName="student_course">-->
-<!--            <column name="student_id" type="int">-->
-<!--                <constraints primaryKey="true" nullable="false" foreignKeyName="fkey_student_id" references="assignment09.student (student_id)"/>-->
-<!--            </column>-->
-<!--            <column name="course_id" type="int">-->
-<!--                <constraints primaryKey="true" nullable="false" foreignKeyName="fk_course_id" references="assignment09.course (course_id)"/>-->
-<!--            </column>-->
-<!--        </createTable>-->
         <sql>
             create table assignment09.student_course
             (
