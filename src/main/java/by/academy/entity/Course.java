@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 
 @Setter
 @Builder
@@ -14,27 +11,15 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Course implements Serializable {
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "course_id")
+    @EqualsAndHashCode.Include
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "administrator_id")
     private Administrator administrator;
-    @ManyToMany(mappedBy = "courses")
-    private Set<Student> students = new HashSet<>();
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Course that = (Course) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
