@@ -22,41 +22,38 @@ public class App {
 
         // create entities
         Administrator administrator = Administrator.builder()
-                .id(1)
                 .courses(null)
                 .teachers(null)
                 .build();
         Student student = Student.builder()
-                .id(1)
                 .courses(null)
                 .assignments(null)
                 .build();
         Teacher teacher = Teacher.builder()
-                .id(1)
                 .administrator(administrator)
                 .build();
         Assignment assignment = Assignment.builder()
-                .id(1)
                 .mark(10)
                 .review("Excellent job")
-                .students(null)
                 .build();
         Course course = Course.builder()
-                .id(1)
                 .administrator(administrator)
-                .students(null)
                 .build();
-        Administrator administrator1 = new Administrator(2, null, null);
-        Student student1 = new Student(2, null, null);
-        Teacher teacher1 = new Teacher(2, administrator1);
-        Assignment assignment1 = new Assignment(2, 8, "good", null);
-        Course course1 = new Course(2, administrator1, null);
+        Administrator administrator1 = new Administrator(null, null, null);
+        Student student1 = new Student(null, null, null);
+        Teacher teacher1 = new Teacher(null, administrator1);
+        Assignment assignment1 = new Assignment(null, 8, "good");
+        Course course1 = new Course(null, administrator1);
 
-        // fulfil collections
+        // fulfil collections and create some objects
         Set<Course> courses = new HashSet<>();
         Set<Teacher> teachers = new HashSet<>();
         Set<Assignment> assignments = new HashSet<>();
-        Set<Student> students = new HashSet<>();
+        adminDAO.create(administrator);
+        adminDAO.create(administrator1);
+
+        courseDAO.create(course);
+        courseDAO.create(course1);
         courses.add(course);
         courses.add(course1);
         administrator.setCourses(courses);
@@ -69,25 +66,14 @@ public class App {
         administrator.setTeachers(teachers);
         administrator1.setTeachers(teachers);
 
+        assignmentDAO.create(assignment);
+        assignmentDAO.create(assignment1);
         assignments.add(assignment);
         assignments.add(assignment1);
         student.setAssignments(assignments);
         student1.setAssignments(assignments);
 
-        students.add(student);
-        students.add(student1);
-        assignment.setStudents(students);
-        assignment1.setStudents(students);
-        course.setStudents(students);
-        course1.setStudents(students);
-
         // create
-        adminDAO.create(administrator);
-        adminDAO.create(administrator1);
-        assignmentDAO.create(assignment);
-        assignmentDAO.create(assignment1);
-        courseDAO.create(course);
-        courseDAO.create(course1);
         studentDAO.create(student);
         studentDAO.create(student1);
         teacherDAO.create(teacher);
@@ -102,7 +88,7 @@ public class App {
         System.out.println(assignmentDAO.selectById(3));
 
         // update
-        assignmentDAO.update(new Assignment(2, 3, "bad", students));
+        assignmentDAO.update(new Assignment(2, 3, "bad"));
 
 //        // delete
 //        studentDAO.delete(1);
